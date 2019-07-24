@@ -121,6 +121,13 @@ public:
       else
         return std::unique_ptr<URParser<StatePacket>>(new URStateParser_V3_10);
     }
+    else if (major_version_ == 5)
+    {
+      if (minor_version_ < 4)
+        return std::unique_ptr<URParser<StatePacket>>(new URStateParser_V3_5);
+      else
+        return std::unique_ptr<URParser<StatePacket>>(new URStateParser_V3_10);
+    }
     else
     {
       return std::unique_ptr<URParser<StatePacket>>(new URStateParser_V3_10);
@@ -143,6 +150,13 @@ public:
       else if (minor_version_ < 5)
         return std::unique_ptr<URParser<RTPacket>>(new URRTStateParser_V3_2__3);
       else if (minor_version_ < 10)
+        return std::unique_ptr<URParser<RTPacket>>(new URRTStateParser_V3_5__5_1);
+      else
+        return std::unique_ptr<URParser<RTPacket>>(new URRTStateParser_V3_10__5_4);
+    }
+    else if (major_version_ == 5)
+    {
+      if (minor_version_ < 4)
         return std::unique_ptr<URParser<RTPacket>>(new URRTStateParser_V3_5__5_1);
       else
         return std::unique_ptr<URParser<RTPacket>>(new URRTStateParser_V3_10__5_4);
